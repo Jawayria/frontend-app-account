@@ -45,7 +45,7 @@
     "bowser": "^2.10.0",
     "classnames": "2.2.6",
     "font-awesome": "4.7.0",
-    "form-urlencoded": "4.0.1",
+    "form-urlencoded": "4.2.1",
     "formdata-polyfill": "3.0.20",
     "history": "4.10.1",
     "jslib-html5-camera-photo": "^3.1.3",
