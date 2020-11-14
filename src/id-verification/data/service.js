@@ -30,6 +30,31 @@ export async function getExistingIdVerification() {
 }
 
 /**
+ * Get the learner's enrollment status for the given course run key.
+ *
+ * Returns {
+ *  requiresVerification: Boolean,
+ *  isActive: Boolean,
+ * }
+ */
+export async function getEnrollment(courseRunKey) {
+  const url = `${getConfig().LMS_BASE_URL}/verify_student/enrollment_status/${courseRunKey}/`;
+  const requestConfig = {
+    headers: { Accept: 'application/json' },
+  };
+  try {
+    const response = await getAuthenticatedHttpClient().get(url, requestConfig);
+    return {
+      requiresVerification: response.data.requires_verification,
+      isActive: response.data.is_active,
+    };
+  } catch (e) {
+    // default true to prevent errors
+    return { requiresVerification: true, isActive: true };
+  }
+}
+
+/**
  * Submit ID verifiction to LMS.
  *
  * verificationData should take the shape of:
